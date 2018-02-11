@@ -11,6 +11,23 @@ namespace UnitTest
     public class ExpandoObjectExtensionsTests
     {
         [TestMethod]
+        public void ShouldMergeAnonymousObjects()
+        {
+            // Arrange
+            var foo = new { Foo = "Foo" };
+            var bar = new { Bar = "Bar" };
+            var baz = new { Baz = "Baz" };
+
+            // Act
+            dynamic result = new ExpandoObject().AddProperties(foo).AddProperties(bar).AddProperties(baz);
+
+            // Assert
+            ((string)result.Foo).ShouldEqual("Foo");
+            ((string)result.Bar).ShouldEqual("Bar");
+            ((string)result.Baz).ShouldEqual("Baz");
+        }
+
+        [TestMethod]
         public void Should_AddPublicProperties_LastOneWithValueWins()
         {
             // Arrange
