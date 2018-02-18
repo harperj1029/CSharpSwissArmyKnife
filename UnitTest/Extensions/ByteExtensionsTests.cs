@@ -3,7 +3,7 @@ using System.Text;
 using CSharpSwissArmyKnife.Extensions;
 using FluentAssertions;
 
-namespace UnitTest.Helpers
+namespace UnitTest.Extensions
 {
     [TestClass]
     public class ByteExtensionsTests

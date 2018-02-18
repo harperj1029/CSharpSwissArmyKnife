@@ -12,7 +12,7 @@ namespace CSharpSwissArmyKnife.Extensions
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="source"></param>
-        /// <returns></returns>
+        /// <returns>A dynamic object containing the merged properties from the source.</returns>
         public static ExpandoObject AddProperties(this ExpandoObject destination, object source)
         {
             var sourceType = source.GetType();
