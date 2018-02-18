@@ -32,6 +32,22 @@ var foo = new Foo { Bar = new Bar { Baz = "Foo-Bar-Baz" } };
 var fooClone = foo.DeepClone();
 ```
 
+### CopyProperties
+Copies public properties from the source to the destination where the name and type match.
+
+```
+class Foo{
+    public string Bar{get;set;}
+}
+
+var source = new Foo{Bar = "source"};
+var destination = new Foo{Bar = "destination"};
+
+destination.CopyProperties(source);
+
+// source.Bar == "destination"
+```
+
 ## _Byte array_ Extensions
 
 ### FromArray
