@@ -33,6 +33,8 @@ var fooClone = foo.DeepClone();
 ```
 
 ## _Byte array_ Extensions
+
+### FromArray
 Get an encoded string from a byte array.
 
 ```
@@ -42,8 +44,10 @@ var myString = bytes.FromArray(); // (default UTF8 encoding)
 // myString == "foo"
 ```
 
-## String Extensions
+## _String_ Extensions
 Get an encoded string from a byte array.
+
+### ToArray
 
 ```
 var bytes = "foo".ToArray(); // (defaults to UTF8 encoding)
