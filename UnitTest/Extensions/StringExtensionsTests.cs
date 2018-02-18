@@ -1,56 +1,23 @@
-﻿using System;
-using Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CSharpSwissArmyKnife.Extensions;
+using System.Text;
+using FluentAssertions;
 
 namespace UnitTest.Helpers
 {
     [TestClass]
-    public class SerializationHelperTests
+    public class StringExtensionsTests
     {
-        [TestMethod]
-        public void ConvertFromByteArray_PassSimpleByteArray_GetExpectedString()
-        {
-            var byteArray = GetSimpleByteArray();
-            var actual = SerializationHelper.ConvertFromByteArray(byteArray);
-            var expectedResult = "This is simple string";
-
-            Assert.AreEqual(expectedResult, actual);
-        }
-
-        [TestMethod]
-        public void ConvertFromByteArray_PassSimpleByteArrayWithMultipleLines_GetExpectedString()
-        {
-            var byteArray = GetSimpleByteArrayWithMultipleLines();
-            var actual = SerializationHelper.ConvertFromByteArray(byteArray);
-            var expectedResult = "This is an example of what a test string might look like.\r\n" +
-                "It has a couple lines\r\nSo it is a bit more complex than the simple version";
-
-            Assert.AreEqual(expectedResult, actual);
-        }
-
-        [TestMethod]
-        public void ConvertFromByteArray_PassSimpleByteArrayWithNonAlphaNumericCharacters_GetExpectedString()
-        {
-            var byteArray = GetSimpleByteArrayWithSillyCharacters();
-            var array = SerializationHelper.ConvertFromByteArray(byteArray);
-            var expectedResult = "This is an example of what a test string might look like.\r\n" +
-                "Let's put some characters that might make this fail?" +
-                "\r\n\"';:!@#$%^&*()-_=+[]\\{}|,./<>`~\r\n0123456789";
-
-            Assert.AreEqual(expectedResult, array);
-        }
-
-
         [TestMethod]
         public void ConvertToByteArray_PassSimpleString_GetExpectedByteArray()
         {
             var str = "This is simple string";
-            var actual = SerializationHelper.ConvertToByteArray(str);
+            var actual = str.ToArray();
             var expectedResult = GetSimpleByteArray();
 
-            Assert.AreEqual(expectedResult.Length, actual.Length);
-            Assert.AreEqual(expectedResult[5], actual[5]);
-            Assert.AreEqual(expectedResult[14], actual[14]);
+            expectedResult.Length.Should().Equals(actual.Length);
+            expectedResult[5].Should().Equals(actual[5]);
+            expectedResult[14].Should().Equals(actual[14]);
         }
 
         [TestMethod]
@@ -58,13 +25,13 @@ namespace UnitTest.Helpers
         {
             var str = "This is an example of what a test string might look like.\r\n" +
                 "It has a couple lines\r\nSo it is a bit more complex than the simple version";
-            var actual = SerializationHelper.ConvertToByteArray(str);
+            var actual = str.ToArray(Encoding.ASCII);
             var expectedResult = GetSimpleByteArrayWithMultipleLines();
 
-            Assert.AreEqual(expectedResult.Length, actual.Length);
-            Assert.AreEqual(expectedResult[5], actual[5]);
-            Assert.AreEqual(expectedResult[14], actual[14]);
-            Assert.AreEqual(expectedResult[33], actual[33]);
+            expectedResult.Length.Should().Equals(actual.Length);
+            expectedResult[5].Should().Equals(actual[5]);
+            expectedResult[14].Should().Equals(actual[14]);
+            expectedResult[33].Should().Equals(actual[33]);
         }
 
         [TestMethod]
@@ -73,14 +40,14 @@ namespace UnitTest.Helpers
             var str = "This is an example of what a test string might look like.\r\n" +
                 "Let's put some characters that might make this fail?" +
                 "\r\n\"';:!@#$%^&*()-_=+[]\\{}|,./<>`~\r\n0123456789";
-            var actual = SerializationHelper.ConvertToByteArray(str);
-            var expectedResult = GetSimpleByteArrayWithSillyCharacters();
+            var actual = str.ToArray();
+            var expectedResult = GetSimpleByteArrayWithExtraCharacters();
 
-            Assert.AreEqual(expectedResult.Length, actual.Length);
-            Assert.AreEqual(expectedResult[5], actual[5]);
-            Assert.AreEqual(expectedResult[14], actual[14]);
-            Assert.AreEqual(expectedResult[39], actual[39]);
-            Assert.AreEqual(expectedResult[45], actual[45]);
+            expectedResult.Length.Should().Equals(actual.Length);
+            expectedResult[5].Should().Equals(actual[5]);
+            expectedResult[14].Should().Equals(actual[14]);
+            expectedResult[39].Should().Equals(actual[39]);
+            expectedResult[45].Should().Equals(actual[45]);
         }
 
         private byte[] GetSimpleByteArray()
@@ -108,7 +75,7 @@ namespace UnitTest.Helpers
             };
         }
 
-        private byte[] GetSimpleByteArrayWithSillyCharacters()
+        private byte[] GetSimpleByteArrayWithExtraCharacters()
         {
             return new byte[]
             {

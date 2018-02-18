@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Extensions
+namespace CSharpSwissArmyKnife.Extensions
 {
     public static class ObjectExtension
     {

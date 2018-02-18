@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace CSharpUtilities.Extensions
+namespace CSharpSwissArmyKnife.Extensions
 {
     public static class ExpandoObjectExtensions
     {

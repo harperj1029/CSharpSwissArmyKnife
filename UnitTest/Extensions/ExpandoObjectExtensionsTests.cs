@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using CSharpUtilities.Extensions;
+using CSharpSwissArmyKnife.Extensions;
 
 namespace UnitTest.Extensions
 {

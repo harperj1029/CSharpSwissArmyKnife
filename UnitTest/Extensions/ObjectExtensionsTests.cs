@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Extensions;
 using System;
 using FluentAssertions;
+using CSharpSwissArmyKnife.Extensions;
 
 namespace UnitTest.Extensions
 {
@@ -12,20 +12,28 @@ namespace UnitTest.Extensions
         public void ShouldClone()
         {
             // Arrange
-            var foo = new Foo { Bar = "Bar1", Baz = 1 };
+            var foo = new Foo { Bar = new Bar { Baz = "Foo-Bar-Baz" } };
 
             // Act
             var fooClone = foo.DeepClone();
 
             // Assert
             foo.Should().BeEquivalentTo(fooClone);
+            foo.Bar.Should().BeEquivalentTo(fooClone.Bar);
+            foo.Should().NotBe(fooClone);
+            foo.Bar.Should().NotBe(fooClone.Bar);            
         }
     }
 
     [Serializable]
     public class Foo
     {
-        public string Bar { get; set; }
-        internal int Baz { get; set; }
+        public Bar Bar { get; set; }        
+    }
+
+    [Serializable]
+    public class Bar
+    {
+        public string Baz { get; set; }
     }
 }
