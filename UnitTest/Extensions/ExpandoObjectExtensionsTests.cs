@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Should;
+using FluentAssertions;
 using CSharpUtilities.Extensions;
 
-namespace UnitTest
+namespace UnitTest.Extensions
 {
     [TestClass]
     public class ExpandoObjectExtensionsTests
@@ -22,9 +22,9 @@ namespace UnitTest
             dynamic result = new ExpandoObject().AddProperties(foo).AddProperties(bar).AddProperties(baz);
 
             // Assert
-            ((string)result.Foo).ShouldEqual("Foo");
-            ((string)result.Bar).ShouldEqual("Bar");
-            ((string)result.Baz).ShouldEqual("Baz");
+            ((string)result.Foo).Should().Equals("Foo");
+            ((string)result.Bar).Should().Equals("Bar");
+            ((string)result.Baz).Should().Equals("Baz");
         }
 
         [TestMethod]
@@ -39,11 +39,11 @@ namespace UnitTest
             dynamic c = new ExpandoObject().AddProperties(a).AddProperties(b);
 
             // Assert
-            ((int)c.PropertyOne).ShouldEqual(2);
-            ((string)c.PropertyTwo).ShouldEqual("two");
-            ((DateTime?)c.PropertyThree).ShouldEqual(now);
+            ((int)c.PropertyOne).Should().Equals(2);
+            ((string)c.PropertyTwo).Should().Equals("two");
+            ((DateTime?)c.PropertyThree).Should().Equals(now);
             var cAsDictionary = c as IDictionary<string, object>;
-            cAsDictionary.Count.ShouldEqual(3);
+            cAsDictionary.Count.Should().Equals(3);
         }     
 
         private class ObjectA
