@@ -41,3 +41,12 @@ var myString = bytes.FromArray(); // (default UTF8 encoding)
 
 // myString == "foo"
 ```
+
+## String Extensions
+Get an encoded string from a byte array.
+
+```
+var bytes = "foo".ToArray(); // (defaults to UTF8 encoding)
+
+// bytes == new byte[] { 0x66, 0x6f, 0x6f }
+```
