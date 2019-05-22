@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using FluentAssertions;
 using CSharpSwissArmyKnife.Extensions;
 
 namespace UnitTest.Extensions
 {
-    [TestClass]
+    [TestFixture]
     public class ExpandoObjectExtensionsTests
     {
-        [TestMethod]
+        [Test]
         public void ShouldMergeAnonymousObjects()
         {
             // Arrange
@@ -27,7 +27,7 @@ namespace UnitTest.Extensions
             ((string)result.Baz).Should().Equals("Baz");
         }
 
-        [TestMethod]
+        [Test]
         public void Should_AddPublicProperties_LastOneWithValueWins()
         {
             // Arrange

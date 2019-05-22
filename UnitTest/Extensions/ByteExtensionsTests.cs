@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Text;
 using CSharpSwissArmyKnife.Extensions;
 using FluentAssertions;
 
 namespace UnitTest.Extensions
 {
-    [TestClass]
+    [TestFixture]
     public class ByteExtensionsTests
     {
-        [TestMethod]
+        [Test]
         public void ConvertFromByteArray_PassSimpleByteArray_GetExpectedString()
         {
             var byteArray = GetSimpleByteArray();
@@ -18,7 +18,7 @@ namespace UnitTest.Extensions
             expectedResult.Should().Equals(actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertFromByteArray_PassSimpleByteArrayWithMultipleLines_GetExpectedString()
         {
             var byteArray = GetSimpleByteArrayWithMultipleLines();
@@ -29,7 +29,7 @@ namespace UnitTest.Extensions
             expectedResult.Should().Equals(actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertFromByteArray_PassSimpleByteArrayWithNonAlphaNumericCharacters_GetExpectedString()
         {
             var byteArray = GetSimpleByteArrayWithOtherCharacters();

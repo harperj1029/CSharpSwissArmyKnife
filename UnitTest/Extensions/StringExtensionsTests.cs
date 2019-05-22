@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using CSharpSwissArmyKnife.Extensions;
 using System.Text;
 using FluentAssertions;
 
 namespace UnitTest.Extensions
 {
-    [TestClass]
+    [TestFixture]
     public class StringExtensionsTests
     {
-        [TestMethod]
+        [Test]
         public void ConvertToByteArray_PassSimpleString_GetExpectedByteArray()
         {
             var str = "This is simple string";
@@ -20,7 +20,7 @@ namespace UnitTest.Extensions
             expectedResult[14].Should().Equals(actual[14]);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertToByteArray_PassSimpleStringWithMultipleLines_GetExpectedByteArray()
         {
             var str = "This is an example of what a test string might look like.\r\n" +
@@ -34,7 +34,7 @@ namespace UnitTest.Extensions
             expectedResult[33].Should().Equals(actual[33]);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertToByteArray_PassSimpleStringWithNonAlphaNumericCharacters_GetExpectedByteArray()
         {
             var str = "This is an example of what a test string might look like.\r\n" +

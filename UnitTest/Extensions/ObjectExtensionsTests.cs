@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using FluentAssertions;
 using CSharpSwissArmyKnife.Extensions;
 
 namespace UnitTest.Extensions
 {
-    [TestClass]
+    [TestFixture]
     public class ObjectExtensionsTests
     {
-        [TestMethod]
+        [Test]
         public void ShouldClone()
         {
             // Arrange
@@ -24,7 +24,7 @@ namespace UnitTest.Extensions
             foo.Bar.Should().NotBe(fooClone.Bar);
         }
 
-        [TestMethod]
+        [Test]
         public void CopyProperties_Should_copy_read_write_properties()
         {
             // Arrange
