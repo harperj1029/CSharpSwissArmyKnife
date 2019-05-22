@@ -2,4 +2,4 @@ language: csharp
 solution: CSharpSwissArmyKnife.sln
 script:
   - msbuild /p:Configuration=Release CSharpSwissArmyKnife.sln
-  - mono ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./UnitTest/bin/Release/MyProject.Tests.dll
+  - mono ./packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./UnitTest/bin/Release/UnitTest.dll
